@@ -1,0 +1,25 @@
+name: Third-party drift
+on:
+  schedule:
+    - cron: '17 6 * * 1'   # weekly, Monday 06:17 UTC
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  drift:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Report upstream drift vs pinned versions
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          {
+            echo '## Third-party drift'
+            echo '```'
+            bash scripts/update-third-party.sh --check 2>&1 || true
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

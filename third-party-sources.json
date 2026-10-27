@@ -1,0 +1,85 @@
+{
+  "comment": "Third-party skills and plugins this library builds on. They are LISTED here, not vendored — fetch each from its own upstream with the command shown. scripts/update-third-party.sh re-pulls each to the latest version and records the resolved commit/version. Run it (or the weekly drift workflow) to keep these pointers current.",
+  "npx_skills": [
+    {
+      "repo": "coreyhaines31/marketingskills",
+      "skills": ["cro", "ab-testing", "conversion-tracking", "analytics", "copywriting", "popups", "ads", "ad-creative", "social", "link-building", "community-marketing", "attribution"],
+      "install": "npx -y skills add coreyhaines31/marketingskills -g -a claude-code --copy -y -s <skills>",
+      "synced_commit": "e85f3cb",
+      "synced_date": "2026-10-19"
+    },
+    {
+      "repo": "WordPress/agent-skills",
+      "skills": ["wordpress-router", "wp-project-triage", "wp-plugin-development", "wp-rest-api", "wp-performance", "wp-wpcli-and-ops"],
+      "install": "npx -y skills add WordPress/agent-skills -g -a claude-code --copy -y -s <skills>",
+      "synced_commit": "eff3785",
+      "synced_date": "2026-10-21"
+    },
+    {
+      "repo": "AgriciDaniel/claude-seo",
+      "skills": ["*"],
+      "install": "npx -y skills add AgriciDaniel/claude-seo -g -a claude-code --copy -y",
+      "note": "the ~25 seo-* skills + seo + audit-site",
+      "synced_commit": "23a2a81",
+      "synced_date": "2026-10-21"
+    },
+    {
+      "repo": "Shopify/liquid-skills",
+      "skills": ["liquid-theme-a11y"],
+      "install": "npx -y skills add Shopify/liquid-skills -g -a claude-code --copy -y -s liquid-theme-a11y",
+      "synced_commit": "ae3e4cc",
+      "synced_date": "2026-03-18"
+    },
+    {
+      "repo": "trailofbits/skills",
+      "skills": ["supply-chain-risk-auditor"],
+      "install": "npx -y skills add trailofbits/skills -g -a claude-code --copy -y -s supply-chain-risk-auditor",
+      "note": "needs uv on PATH",
+      "synced_commit": "f0dd11d",
+      "synced_date": "2026-10-21"
+    },
+    {
+      "repo": "mattpocock/skills",
+      "skills": ["tdd"],
+      "install": "npx -y skills add mattpocock/skills -g -a claude-code --copy -y -s tdd",
+      "synced_commit": "5beb35b",
+      "synced_date": "2026-10-19"
+    },
+    {
+      "repo": "mvanhorn/last30days-skill",
+      "skills": ["last30days"],
+      "install": "npx -y skills add mvanhorn/last30days-skill -g -a claude-code --copy -y -s last30days",
+      "note": "keep local assets/ dir",
+      "synced_commit": "0f524f1",
+      "synced_date": "2026-10-21"
+    },
+    {
+      "repo": "emilkowalski/skills",
+      "skills": ["apple-design", "emil-design-eng", "animate", "improve-animations", "review-animations", "animation-performance", "mobile-native", "break-ui", "prototype"],
+      "install": "npx -y skills add emilkowalski/skills -g -a claude-code --copy -y -s <skills>",
+      "note": "web/motion + Apple fluid-UI",
+      "synced_commit": "2d22863",
+      "synced_date": "2026-10-11"
+    }
+  ],
+  "plugins": [
+    { "name": "caveman@caveman", "version": "4.0.1", "update": "claude plugin update caveman@caveman --scope user", "note": "always-on terse output mode" },
+    { "name": "cloudflare@cloudflare", "version": "1.0.2", "update": "claude plugin update cloudflare@cloudflare --scope user" },
+    { "name": "higgsfield@higgsfield", "version": "0.13.0", "update": "claude plugin update higgsfield@higgsfield --scope user" },
+    { "name": "shopify-ai-toolkit@claude-plugins-official", "version": "2.1.2", "update": "claude plugin update shopify-ai-toolkit@claude-plugins-official --scope user" },
+    { "name": "liquid-lsp@claude-plugins-official", "version": "1.0.0", "update": "claude plugin update liquid-lsp@claude-plugins-official --scope user" }
+  ],
+  "self_updating": [
+    { "name": "gstack", "repo": "garrytan/gstack", "note": "updates itself via the gstack-upgrade skill / npx; not managed by update-third-party.sh" }
+  ],
+  "manual_pinned": [
+    {
+      "repo": "zubair-trabzada/geo-seo-claude",
+      "pinned_sha": "989cae01e8ebbc42a9ec798eb9e7cb423f5ec89c",
+      "pinned_date": "2026-10-22",
+      "skills": ["geo-audit", "geo-citability", "geo-crawlers", "geo-llmstxt", "geo-platform-optimizer"],
+      "install": "hand-copy skills/<name> from the pinned commit; review upstream before re-pulling (ships install.sh + a webapp/white-label dir)",
+      "note": "GEO/AI-search suite, hand-curated subset; not auto-pulled"
+    }
+  ]
+}

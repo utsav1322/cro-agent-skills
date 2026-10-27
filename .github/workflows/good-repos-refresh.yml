@@ -1,0 +1,35 @@
+name: Good-repos monthly refresh
+on:
+  schedule:
+    - cron: '0 9 1 * *'   # 1st of each month, 09:00 UTC
+  workflow_dispatch:
+permissions:
+  issues: write
+jobs:
+  remind:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const month = new Date().toISOString().slice(0, 7);
+            const title = `Refresh Good-Repos library — ${month}`;
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo,
+              state: 'open', labels: 'good-repos',
+            });
+            if (existing.data.some(i => i.title === title)) return;
+            await github.rest.issues.create({
+              owner: context.repo.owner, repo: context.repo.repo,
+              title,
+              labels: ['good-repos'],
+              body: [
+                'Monthly review of `GOOD-REPOS.md`:',
+                '',
+                '- [ ] `scripts/update-third-party.sh --check` — drift on adopted upstreams',
+                '- [ ] Reconsider Parked / Watching entries',
+                '- [ ] Add newly-found repos with a verdict',
+                '- [ ] Append a `### Reviewed ' + month + '` entry to the log',
+                '- [ ] Open a PR with the changes',
+              ].join('\n'),
+            });
